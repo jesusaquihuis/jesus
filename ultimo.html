@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> El Último Mono</title>
+  
+</head>
+<body class="bg-black font-sans leading-relaxed text-gray-800">
+                 <!--color fondo fondo pequeño -->
+    <header class="bg-black shadow-sm sticky top-0 h-20 z-50">
+    <div class="max-w-7x1 mx-auto px-4 py-4 flex items-center justify-between">
+<div class="flex items-center">
+    <h1 class="text-3xl font-bold text-green-400 px-8 ">
+        El Último Mono
+    </h1>
+</div>
+ <nav class="hidden md:flex space-x-8 ">
+                    <a href="#inicio" class="text-green-400 font-medium hover:text-white ">Inicio</a>
+                    <a href="#info" class="text-blue-400  font-medium hover:text-white">Info-general</a>
+                    <a href="#tipo" class="text-orange-300  font-medium hover:text-white ">Personajes</a>
+                     <a href="#niveles" class="text-pink-600  font-medium hover:text-white ">Niveles</a>
+                    <a href="#copy" class="text-green-400  font-medium hover:text-white ">Copyright</a>
+                  </nav>
+
+  
+
+
+
+               <div id="userInfo" class="mt-4"></div>
+
+<script>
+    // 1. CAPTURAR EL ID QUE VIENE DE PHP
+    const params = new URLSearchParams(window.location.search);
+    const idFromUrl = params.get('login_id');
+
+    if (idFromUrl) {
+        // Si venimos del login.php, guardamos el ID en el navegador
+        localStorage.setItem("playerId", idFromUrl);
+        
+        // Limpiamos la URL para que no se vea "ultimo.html?login_id=1234"
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+  
+    const playerId = localStorage.getItem("playerId");
+    const userInfo = document.getElementById("userInfo");
+
+    if (playerId) {
+        // Si está logueado (Bienvenida)
+        userInfo.innerHTML = `
+            <div class="flex items-center gap-3">
+                <p class="text-lg font-semibold text-white">
+                    Bienvenido, ID:
+                    <span class="text-blue-400">${playerId}</span>
+                </p>
+
+                <button id="logoutBtn"
+                    class="bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700 transition text-sm font-bold">
+                    Cerrar sesión
+                </button>
+            </div>
+        `;
+
+        //cerrar sesión
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            localStorage.removeItem("playerId");   
+            window.location.reload();              
+        });
+
+    } else {
+        // Si no está logueado Botón Iniciar Sesión
+        userInfo.innerHTML = `
+            <a href="iniciar.html"
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-500 transition font-bold">
+                Iniciar sesión
+            </a>
+        `;
+    }
+</script>
+
+
+ 
+    </div>    
+    </header>
+    <!--Hero-->
+    <section class="bg-blue-900  py-20" style="background-image: url('img/escenario.jpeg');" id="inicio"> 
+        <div class="max-w-4xl mx-auto text-center px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-green-400 animate-pulse">
+                Sobrevive. Lucha. Evoluciona. El destino de la ciudad depende del último mono
+            </h1>
+          
+
+                       <label>
+  <input type="checkbox" class="peer hidden">
+
+ <div class="peer-checked:hidden  ">
+            
+                  <img src="img/jefe.png" class="mx-auto">      
+              
+                </div>
+   <div class="hidden peer-checked:block ">
+          
+                  <img src="img/jefeenojado.png" class="mx-auto">      
+                
+                </div>
+</label>
+        </div>
+    </section>
+
+<section class="text-center px-4" id="info">
+
+
+<h2 class="font-bold text-5xl py-20 mb-8 text-blue-400">Descripción general del juego - El Último Mono</h2>
+
+<p class="text-lg max-w-4xl mx-auto text-white">El Último Mono es un juego de acción en 
+    2D donde el jugador avanza a través de distintos carriles mientras enfrenta 
+    oleadas de zombis y, finalmente, un jefe poderoso. El jugador puede elegir entre
+     varios personajes, cada uno con su propio estilo visual y disparos únicos. 
+     El objetivo principal es sobrevivir, esquivar ataques y derrotar a los enemigos 
+     mientras se acumula puntuación.</p>
+
+</section>
+
+
+
+<!--personajes-->
+    <section class="py-16" id="tipo">
+<h2 class="font-bold text-5xl py-16 mb-8 text-center text-orange-300">Personajes</h2>
+       
+        <div class="max-w-6xl mx-auto px-4 ">
+    
+            <div class="grid md:grid-cols-3 gap-8 mx text-center ">
+             
+                <!--Columna 1-->
+                <div class="bg-gray-400 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow ">
+                    <h3 class="text-6xl font-bold mb-2 text-green-900">
+                  Soldado
+                    </h3>
+               
+                  <img src="img/soldado1.png" class="mx-auto">      
+                
+                  <p class="text-green-800 text-xl font-bold py-8 drop-shadow-xl">Entrenado para sobrevivir en zonas infectadas, 
+                        domina armas de medio alcance y mantiene una gran precisión incluso bajo presión.</p>
+                        <h4 class="text-4xl font-bold mb-2 text-gray-400 ">
+                  Tipo de bala
+                    </h4>
+                        <img src="img/bala1.png" class="mx-auto">   
+                </div>
+
+                <!--Columna 2-->
+                 <div class="bg-gray-400 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow ">
+                    <h3 class="text-6xl font-bold mb-2 text-gray-700">
+                Operador
+                    </h3>
+               
+                  <img src="img/soldado2.png" class="mx-auto">      
+                
+                  <p class="text-gray-700 text-xl font-bold py-8 drop-shadow-xl">Su arma de precisión y 
+                    su entrenamiento avanzado lo convierten en el mejor para eliminar zombis desde 
+                    posiciones seguras.</p>
+                        <h4 class="text-4xl font-bold mb-2 text-gray-400 ">
+                  Tipo de bala
+                    </h4>
+                        <img src="img/bala2.png" class="mx-auto">   
+                </div>
+
+           <!--aqui solo cambia de contenedor-->
+<label >
+  <input type="checkbox" class="peer hidden">
+
+  
+ <div class="peer-checked:hidden bg-gray-400 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow ">
+                    <h3 class="text-6xl font-bold mb-2 text-amber-900">
+                 Chango
+                    </h3>
+               
+                  <img src="img/chango.png" class="mx-auto">      
+                
+                    <p class="text-amber-900 text-xl font-bold py-8 drop-shadow-xl">Especialista en combate cercano, el chango usa un arma de corto alcance para abrirse paso entre los zombis.</p>
+                       
+                        <img src="img/bala3.png" class="mx-auto">   
+                </div>
+
+
+   <div class="hidden peer-checked:block bg-violet-200 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow ">
+                    <h3 class="text-5xl font-bold mb-2 text-purple-900">
+                 Evolucion chango
+                    </h3>
+               
+                  <img src="img/chango2.png" class="mx-auto">      
+                
+                    <p class="text-purple-900  text-2xl font-bold  drop-shadow-xl">Después de sobrevivir 
+                      incontables oleadas, el Chango ahora empuña una Nerf modificada, capaz de disparar
+                       dardos.</p>
+                        
+                        <img src="img/balanerf.png" class="mx-auto">   
+                </div>
+</label>
+
+            
+        </div>
+    </section>
+
+<!--niveles-->
+    <section class="py-16" id="niveles">
+<h2 class="font-bold text-5xl py-16 mb-8 text-center text-pink-600">Niveles</h2>
+       
+        <div class="max-w-6xl mx-auto px-4 ">
+    
+            <div class="grid md:grid-cols-3 gap-8 mx text-center ">
+             
+                <!--Columna 1-->
+                <div class="bg-gray-400 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow " 
+                style="background-image: url('img/ataque.png');">
+                    <h3 class="text-6xl font-bold mb-2 text-green-600">
+               Primera oleada
+                    </h3>
+               
+                    
+                
+                 
+                        
+                       
+                </div>
+
+                <!--Columna 2-->
+                 <div class="bg-black rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow "
+                 >
+                    <h3 class="text-6xl font-bold mb-2 text-white">
+               Jefe final
+                    </h3>
+               
+                  <img src="img/nivelfinal.png" class="mx-auto">      
+                
+                  <p class="text-white text-xl font-bold py-8 drop-shadow-xl">Su cuerpo gigantesco 
+                    está cubierto de carne desgarrada, músculos expuestos. Pero lo peor no son sus rugidos que estremecen el suelo… sino sus armas: plátanos 
+                    envenenados, mutados por
+                     químicos experimentales.</p>
+                       
+                    
+                </div>
+
+                   <!--Columna 3-->
+                 <div class="bg-gray-400 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow ">
+                    <h3 class="text-6xl font-bold mb-2 text-gray-700">
+               Zombie
+                    </h3>
+               
+                   
+                 <img src="img/zombie.png" class="mx-auto">    
+                  <p class="text-gray-700 text-xl font-bold py-8 drop-shadow-xl">Son criaturas 
+                    frágiles y de poca resistencia, pero no te confíes: su velocidad es 
+                    brutal.</p>
+                       
+                         
+                </div>
+
+           
+
+
+            
+        </div>
+   </section>
+
+<form id="formInsertar" class="relative flex flex-col gap-6 bg-gray-900/90 backdrop-blur-sm p-8 border border-green-500/30 rounded-2xl shadow-[0_0_20px_rgba(74,222,128,0.15)] max-w-4xl mx-auto my-16 transition-all hover:border-green-500/50">
+    
+    <div class="border-b border-gray-700 pb-4 mb-2">
+        <h2 class="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 tracking-wide uppercase">
+            Tabla de Clasificaciones
+        </h2>
+       
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-6">
+        
+        <div class="flex flex-col w-full group">
+            <label class="font-bold text-green-400 mb-2 text-sm uppercase tracking-wider group-hover:text-green-300 transition-colors">Gamertag</label>
+            <input type="text" name="nombre" placeholder="Ej: MonoSupremo" required 
+                class="bg-gray-800 text-white border border-gray-700 p-3 rounded-lg outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/50 transition-all placeholder-gray-500">
+        </div>
+
+        <div class="flex flex-col w-full group">
+            <label class="font-bold text-blue-400 mb-2 text-sm uppercase tracking-wider group-hover:text-blue-300 transition-colors">ID de Jugador</label>
+            <input type="number" name="idjugador" placeholder="Ej: 105" required 
+                class="bg-gray-800 text-white border border-gray-700 p-3 rounded-lg outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all placeholder-gray-500">
+        </div>
+
+        <div class="flex flex-col w-full group">
+            <label class="font-bold text-orange-400 mb-2 text-sm uppercase tracking-wider group-hover:text-orange-300 transition-colors">Puntos</label>
+            <input type="number" name="punto" placeholder="0" required 
+                class="bg-gray-800 text-white border border-gray-700 p-3 rounded-lg outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/50 transition-all placeholder-gray-500">
+        </div>
+    </div>
+
+    <div class="flex justify-center mt-6">
+        <button type="submit" 
+            class="bg-gradient-to-r from-green-600 to-green-500 text-white font-bold py-3 px-10 rounded-full shadow-lg hover:shadow-green-500/30 transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 uppercase tracking-widest border border-green-400/20">
+            Guardar Récord
+        </button>
+    </div>
+
+</form>
+
+<script>
+document.getElementById("formInsertar").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    // Si estamos editando
+    if(idEditando !== null){
+        formData.append("actualizar", "1");
+        formData.append("id", idEditando);
+    } else {
+        // Si estamos insertando
+        formData.append("guardar", "1");
+    }
+
+    fetch("crudbase.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(data => {
+        console.log("PHP:", data);
+
+        // Reiniciar formulario y tabla
+        document.getElementById("formInsertar").reset();
+        idEditando = null;
+
+        // Regresar botón a modo "Guardar"
+        const btn = document.querySelector("#formInsertar button");
+        btn.textContent = "Guardar Récord";
+        btn.style.background = "linear-gradient(to right, #16a34a, #22c55e)";
+
+        cargarTabla();
+    });
+});
+</script>
+<section id="tablaRegistros" class="max-w-5xl mx-auto my-10 p-6 bg-gray-900/80 border border-green-500/30 rounded-2xl shadow-lg">
+    
+    <h2 class="text-3xl font-bold text-center text-green-400 mb-6">
+        Registros Guardados
+    </h2>
+
+    <table class="w-full text-white text-center border-collapse">
+       <thead>
+    <tr class="bg-gray-800">
+        <th class="p-3 border border-gray-700">Gamertag</th>
+        <th class="p-3 border border-gray-700">ID Jugador</th>
+        <th class="p-3 border border-gray-700">Puntos</th>
+        <th class="p-3 border border-gray-700">Acciones</th>
+    </tr>
+</thead>
+        <tbody id="cuerpoTabla" class="bg-gray-700/40">
+            <!-- Insertado por JavaScript -->
+        </tbody>
+    </table>
+
+</section>
+<script>
+// tabla
+function cargarTabla(){
+    fetch("crudbase.php?ver=1")
+    .then(res => res.json())
+    .then(data => {
+        let tabla = document.getElementById("cuerpoTabla");
+        tabla.innerHTML = "";
+
+        if(data.length === 0){
+            tabla.innerHTML = `
+                <tr>
+                    <td colspan="3" class="p-4 text-red-400">No hay registros</td>
+                </tr>`;
+            return;
+        }
+
+       data.forEach(row => {
+    tabla.innerHTML += `
+        <tr>
+            <td class="p-3 border border-gray-700">${row.nombre}</td>
+            <td class="p-3 border border-gray-700">#${row.idjugador}</td>
+            <td class="p-3 border border-gray-700">${row.punto}</td>
+
+           <td class="p-3 border border-gray-700 flex gap-2 justify-center">
+
+    <button onclick="editar(${row.id}, '${row.nombre}', '${row.idjugador}', '${row.punto}')"
+            class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded">
+        Actualizar
+    </button>
+
+    <button onclick="borrar(${row.id})"
+            class="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded">
+        Borrar
+    </button>
+
+</td>
+        </tr>
+    `;
+});
+    });
+}
+
+// Cargar tabla al abrir la página
+cargarTabla();
+
+// Después de guardar, volver a cargar tabla
+document.getElementById("formInsertar").addEventListener("submit", function(){
+    setTimeout(cargarTabla, 300);
+});
+</script>
+<script>
+function borrar(id){
+    if(!confirm("¿Seguro que deseas eliminar este registro?")) return;
+
+    let formData = new FormData();
+    formData.append("eliminar", "1");
+    formData.append("id", id);
+
+    fetch("crudbase.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(data => {
+        if(data.includes("OK")){
+            cargarTabla(); // Actualiza tabla inmediatamente
+        } else {
+            alert("Error al borrar");
+        }
+    })
+}
+</script>
+
+<script>
+// saber si esta editado
+let idEditando = null;
+
+//  edditar
+function editar(id, nombre, idjugador, punto){
+
+    // Guardar ID del registro que se va a editar
+    idEditando = id;
+
+    // Llenar inputs del formulario
+    document.querySelector("input[name='nombre']").value = nombre;
+    document.querySelector("input[name='idjugador']").value = idjugador;
+    document.querySelector("input[name='punto']").value = punto;
+
+    // Cambiar texto del botón
+    const btn = document.querySelector("#formInsertar button");
+    btn.textContent = "Actualizar Registro";
+    btn.style.background = "linear-gradient(to right, #2563eb, #1d4ed8)";
+}
+</script>
+<footer class="bg-black border-t border-gray-700 py-10 mt-16" id="copy">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+
+    
+        <div>
+            <h2 class="text-3xl font-bold text-green-400">El Último Mono</h2>
+            <p class="text-gray-400 mt-2">
+                Sobrevive. Lucha. Evoluciona.
+            </p>
+        </div>
+
+        
+        <div>
+            <h3 class="text-xl font-semibold text-white mb-3">Enlaces</h3>
+            <ul class="space-y-2">
+                <li><a href="#inicio" class="text-gray-400 hover:text-white">Inicio</a></li>
+                <li><a href="#info" class="text-gray-400 hover:text-white">Info-general</a></li>
+                <li><a href="#tipo" class="text-gray-400 hover:text-white">Personajes</a></li>
+                <li><a href="#niveles" class="text-gray-400 hover:text-white">Niveles</a></li>
+            </ul>
+        </div>
+
+        <div class="flex flex-col justify-center">
+            <p class="text-gray-400 text-sm">
+                © 2025 El Último Mono — Todos los derechos reservados.
+            </p>
+        </div>
+
+    </div>
+    
+</footer>
+
+
+<div id="tipo" class="fixed bottom-0 left-0 z-50">
+    <img src="img/changocaido2.png" class="w-12" alt="">
+</div>
+
+</body>
+
+</html>
